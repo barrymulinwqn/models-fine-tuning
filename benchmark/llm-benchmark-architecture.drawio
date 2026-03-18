@@ -1,0 +1,568 @@
+<mxfile host="app.diagrams.net" modified="2026-03-17T00:00:00.000Z" agent="GitHub Copilot" version="21.0.0" type="device">
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       PAGE 1 — Benchmark Pipeline Architecture
+       ═══════════════════════════════════════════════════════════════════ -->
+  <diagram name="Benchmark Pipeline" id="page-pipeline">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ── PAGE TITLE ── -->
+        <mxCell id="p1_title" value="Finance LLM Benchmark Pipeline Architecture"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;
+                 fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="160" y="20" width="1200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ── STEP LABEL ROW ── -->
+        <mxCell id="lbl_step1" value="① Datasets" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="30" y="85" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_step2" value="② Preprocessing" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="235" y="85" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_step3" value="③ Model Inference" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="445" y="85" width="190" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_step4" value="④ Evaluation Engine" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="685" y="85" width="175" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_step5" value="⑤ Metrics Aggregation" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="915" y="85" width="185" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_step6" value="⑥ Scorecard &amp; Report" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1165" y="85" width="175" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             STEP 1 — Test Datasets (container)
+             ══════════════════════════════════ -->
+        <mxCell id="ds_container" value="Test Datasets"
+          style="swimlane;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontStyle=1;fontSize=11;fontColor=#003087;
+                 rounded=1;arcSize=4;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="110" width="165" height="370" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ds1" value="FinQA / ConvFinQA&#xa;Numerical QA"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;align=center;"
+          vertex="1" parent="ds_container">
+          <mxGeometry x="8" y="36" width="150" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="ds2" value="Financial PhraseBank&#xa;FPB + FiQA Sentiment"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;align=center;"
+          vertex="1" parent="ds_container">
+          <mxGeometry x="8" y="92" width="150" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="ds3" value="FinBench / RegQA&#xa;Domain Knowledge MCQ"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;align=center;"
+          vertex="1" parent="ds_container">
+          <mxGeometry x="8" y="148" width="150" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="ds4" value="EDGAR Corpus&#xa;Summarization"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;align=center;"
+          vertex="1" parent="ds_container">
+          <mxGeometry x="8" y="204" width="150" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="ds5" value="FinHallBench&#xa;Adversarial Safety"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;align=center;"
+          vertex="1" parent="ds_container">
+          <mxGeometry x="8" y="260" width="150" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="ds6" value="FinCode-Eval / SQLFinBench&#xa;Code Generation"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;align=center;"
+          vertex="1" parent="ds_container">
+          <mxGeometry x="8" y="316" width="150" height="46" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             STEP 2 — Data Preprocessing
+             ══════════════════════════════════ -->
+        <mxCell id="prep_box" value="&lt;b&gt;Data Preprocessing&lt;/b&gt;&lt;br/&gt;&lt;hr style=&#39;border-top:1px solid #82b366&#39;/&gt;• Tokenization&lt;br/&gt;• Text Normalization&lt;br/&gt;• Prompt Template Apply&lt;br/&gt;• Deduplication Check&lt;br/&gt;• Split Hash Verification&lt;br/&gt;• Seed=42 Partitioning"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="240" y="190" width="165" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             STEP 3 — Model Inference Layer
+             ══════════════════════════════════ -->
+        <mxCell id="model_container" value="Model Inference Layer&lt;br/&gt;(vLLM / SGLang  |  temp=0.0)"
+          style="swimlane;startSize=38;fillColor=#fff2cc;strokeColor=#d6b656;
+                 fontStyle=1;fontSize=11;fontColor=#7d4e00;
+                 rounded=1;arcSize=4;"
+          vertex="1" parent="1">
+          <mxGeometry x="450" y="110" width="185" height="390" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m1" value="🦙  LLaMA 3.3 70B&#xa;Meta  |  Meta Community Lic."
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d6b656;fontSize=10;align=center;"
+          vertex="1" parent="model_container">
+          <mxGeometry x="10" y="45" width="165" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="m2" value="⚡  Mixtral 8×7B&#xa;Mistral AI  |  Apache 2.0"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d6b656;fontSize=10;align=center;"
+          vertex="1" parent="model_container">
+          <mxGeometry x="10" y="101" width="165" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="m3" value="🌐  Qwen 2.5 72B&#xa;Alibaba  |  Qwen License"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d6b656;fontSize=10;align=center;"
+          vertex="1" parent="model_container">
+          <mxGeometry x="10" y="157" width="165" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="m4" value="🔬  DeepSeek-R1 70B&#xa;DeepSeek AI  |  MIT"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d6b656;fontSize=10;align=center;"
+          vertex="1" parent="model_container">
+          <mxGeometry x="10" y="213" width="165" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="m5" value="🔷  Phi-4 14B&#xa;Microsoft  |  MIT"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d6b656;fontSize=10;align=center;"
+          vertex="1" parent="model_container">
+          <mxGeometry x="10" y="269" width="165" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="m6" value="💎  Gemma 2 27B&#xa;Google DeepMind  |  Gemma ToU"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d6b656;fontSize=10;align=center;"
+          vertex="1" parent="model_container">
+          <mxGeometry x="10" y="325" width="165" height="48" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             STEP 4 — Evaluation Engine
+             ══════════════════════════════════ -->
+        <mxCell id="eval_box" value="&lt;b&gt;Evaluation Engine&lt;/b&gt;&lt;br/&gt;&lt;hr style=&#39;border-top:1px solid #b85450&#39;/&gt;• lm-evaluation-harness&lt;br/&gt;• RAGAS (RAG eval)&lt;br/&gt;• DeepEval (LLM judge)&lt;br/&gt;• Custom finance tasks&lt;br/&gt;• Docker code sandbox&lt;br/&gt;• GPT-4o judge (D1,D2,D3)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="690" y="185" width="175" height="185" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             STEP 5 — Metrics Aggregation
+             ══════════════════════════════════ -->
+        <mxCell id="metrics_container" value="Metrics Aggregation"
+          style="swimlane;startSize=28;fillColor=#e1d5e7;strokeColor=#9673a6;
+                 fontStyle=1;fontSize=11;fontColor=#4a0070;
+                 rounded=1;arcSize=4;"
+          vertex="1" parent="1">
+          <mxGeometry x="920" y="110" width="190" height="385" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="met1" value="D1  Financial Domain Knowledge"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="35" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met2" value="D2  Numerical Reasoning"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="77" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met3" value="D3  Document Understanding"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="119" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met4" value="D4  Instruction Following"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="161" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met5" value="D5  Hallucination &amp; Safety"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="203" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met6" value="D6  Latency &amp; Throughput"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="245" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met7" value="D7  Context Window Handling"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="287" width="175" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="met8" value="D8  Code Generation"
+          style="text;html=1;strokeColor=#c9a8e0;fillColor=#f3ebf9;rounded=1;fontSize=10;align=left;spacingLeft=6;"
+          vertex="1" parent="metrics_container">
+          <mxGeometry x="8" y="329" width="175" height="34" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             STEP 6 — Scorecard & Report
+             ══════════════════════════════════ -->
+        <mxCell id="report_box" value="&lt;b&gt;Scorecard &amp; Report&lt;/b&gt;&lt;br/&gt;&lt;hr style=&#39;border-top:1px solid #82b366&#39;/&gt;• Per-Dimension Scores (0–100)&lt;br/&gt;• Composite Score / Grade&lt;br/&gt;• Radar + Heatmap Charts&lt;br/&gt;• Latency Pareto Plot&lt;br/&gt;• Cost/Quality Analysis&lt;br/&gt;• Go / No-Go Recommendation"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="1170" y="185" width="185" height="185" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             CONNECTING ARROWS
+             ══════════════════════════════════ -->
+        <mxCell id="arr1" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#6c8ebf;" edge="1" source="ds_container" target="prep_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arr2" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#82b366;" edge="1" source="prep_box" target="model_container" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arr3" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#d6b656;" edge="1" source="model_container" target="eval_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arr4" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#b85450;" edge="1" source="eval_box" target="metrics_container" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arr5" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#9673a6;" edge="1" source="metrics_container" target="report_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             INFRASTRUCTURE FOOTER BAR
+             ══════════════════════════════════ -->
+        <mxCell id="infra_bar" value="⚙  Infrastructure: 4× H100 80GB SXM5  |  CUDA 12.x  |  vLLM 0.4+ / SGLang 0.2+  |  Seed = 42  |  Temperature = 0.0  |  Models evaluated SERIALLY  |  Tracking: MLflow + LangFuse"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;
+                 fontColor=#333333;fontSize=10;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="530" width="1325" height="38" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       PAGE 2 — Evaluation Dimensions Framework
+       ═══════════════════════════════════════════════════════════════════ -->
+  <diagram name="Evaluation Dimensions" id="page-dimensions">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ── PAGE TITLE ── -->
+        <mxCell id="p2_title" value="Finance LLM — 8 Evaluation Dimensions Framework"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;
+                 fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="100" y="20" width="1200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ── CENTRE HUB ── -->
+        <mxCell id="hub" value="&lt;b&gt;Finance LLM&lt;br/&gt;Evaluation&lt;br/&gt;Framework&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px&#39;&gt;8 Dimensions&lt;br/&gt;Weighted Scorecard&lt;/font&gt;"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;
+                 fontColor=#ffffff;fontSize=13;fontStyle=1;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="580" y="340" width="220" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D1 — Financial Domain Knowledge  (TOP-LEFT)
+             ══════════════════════════════════ -->
+        <mxCell id="d1_box" value="&lt;b&gt;D1 — Financial Domain Knowledge&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 15–25%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• Exact Match (EM)&lt;br/&gt;• Answer F1&lt;br/&gt;• Domain Sub-Score&lt;br/&gt;&lt;br/&gt;Datasets:&lt;br/&gt;• FinBench (CFA/FRM/CPA MCQ)&lt;br/&gt;• RegQA (Basel III, MiFID II)&lt;br/&gt;• DocFinQA (extractive)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="80" y="90" width="220" height="195" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D2 — Numerical Reasoning  (TOP-CENTER)
+             ══════════════════════════════════ -->
+        <mxCell id="d2_box" value="&lt;b&gt;D2 — Numerical Reasoning&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 15–25%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• EM Accuracy (±0.5% tol.)&lt;br/&gt;• Program Accuracy&lt;br/&gt;• Numeric F1&lt;br/&gt;• CoT Quality (LLM-judge)&lt;br/&gt;&lt;br/&gt;Datasets:&lt;br/&gt;• FinQA full test set&lt;br/&gt;• TAT-QA, ConvFinQA&lt;br/&gt;• Custom ratio analysis"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="550" y="60" width="220" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D3 — Document Understanding  (TOP-RIGHT)
+             ══════════════════════════════════ -->
+        <mxCell id="d3_box" value="&lt;b&gt;D3 — Document Understanding&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 10–20%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• ROUGE-L (≥ 0.35)&lt;br/&gt;• BERTScore F1 (≥ 0.88)&lt;br/&gt;• METEOR&lt;br/&gt;• Coverage Score&lt;br/&gt;• Factual Consistency (NLI)&lt;br/&gt;&lt;br/&gt;Datasets:&lt;br/&gt;• EDGAR Corpus, EarningsCall&lt;br/&gt;• ProspectusSumm"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="1060" y="90" width="220" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D4 — Instruction Following  (MID-RIGHT)
+             ══════════════════════════════════ -->
+        <mxCell id="d4_box" value="&lt;b&gt;D4 — Instruction Following&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 10–15%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• Prompt-Level Accuracy&lt;br/&gt;• Instruction-Level Accuracy&lt;br/&gt;• JSON Validity Rate (≥ 0.95)&lt;br/&gt;• Schema Compliance Rate&lt;br/&gt;• Tool Call Accuracy&lt;br/&gt;&lt;br/&gt;Datasets:&lt;br/&gt;• IFEval-Finance&lt;br/&gt;• ToolBench-Finance"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="1090" y="375" width="220" height="215" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D5 — Hallucination & Safety  (BOTTOM-RIGHT)
+             ══════════════════════════════════ -->
+        <mxCell id="d5_box" value="&lt;b&gt;D5 — Hallucination &amp; Safety&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 15–20%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• Hallucination Rate HR (≤ 5%)&lt;br/&gt;• Factual Error Rate FER (≤ 8%)&lt;br/&gt;• Appropriate Refusal Rate&lt;br/&gt;• Calibration Error ECE (≤ 0.10)&lt;br/&gt;&lt;br/&gt;Datasets:&lt;br/&gt;• FinHallBench (adversarial)&lt;br/&gt;• FinAdvice-Red, RegQA"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="1040" y="680" width="220" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D6 — Latency & Throughput  (BOTTOM-CENTER)
+             ══════════════════════════════════ -->
+        <mxCell id="d6_box" value="&lt;b&gt;D6 — Latency &amp; Throughput&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 5–10%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• TTFT — Time to First Token&lt;br/&gt;• P50 / P95 Completion Latency&lt;br/&gt;• Throughput TPS (≥ 500)&lt;br/&gt;• Peak VRAM Usage (GB)&lt;br/&gt;• Cost / 1M tokens (USD)&lt;br/&gt;&lt;br/&gt;Profiles: Latency-Critical,&lt;br/&gt;Interactive, Batch"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="550" y="760" width="220" height="215" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D7 — Context Window Handling  (BOTTOM-LEFT)
+             ══════════════════════════════════ -->
+        <mxCell id="d7_box" value="&lt;b&gt;D7 — Context Window Handling&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 5–10%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• NIAH Accuracy (≥ 0.80)&lt;br/&gt;• Position Bias Score (≤ 0.10)&lt;br/&gt;• Multi-hop Recall F1 (≥ 0.65)&lt;br/&gt;• Long-Context Faithfulness&lt;br/&gt;&lt;br/&gt;Test Lengths:&lt;br/&gt;4K / 8K / 16K / 32K / 64K / 128K&lt;br/&gt;tokens"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0ff;strokeColor=#6666cc;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="60" y="680" width="220" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             D8 — Code Generation  (MID-LEFT)
+             ══════════════════════════════════ -->
+        <mxCell id="d8_box" value="&lt;b&gt;D8 — Code Generation&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;Default Weight: 5–10%&lt;br/&gt;&lt;br/&gt;Metrics:&lt;br/&gt;• Pass@1 (≥ 0.55)&lt;br/&gt;• Pass@3 (≥ 0.75)&lt;br/&gt;• Compilation Rate (≥ 0.95)&lt;br/&gt;• Numerical Correctness&lt;br/&gt;• SQL Execution Accuracy&lt;br/&gt;&lt;br/&gt;Datasets:&lt;br/&gt;• FinCode-Eval (Python)&lt;br/&gt;• SQLFinBench"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c62828;
+                 fontSize=10;verticalAlign=top;align=left;spacingLeft=8;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="375" width="220" height="215" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             SPOKE CONNECTORS (hub → each dimension box)
+             ══════════════════════════════════ -->
+        <mxCell id="spoke1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#6c8ebf;exitX=0.1;exitY=0;exitDx=0;exitDy=0;" edge="1" source="hub" target="d1_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#82b366;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" source="hub" target="d2_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#d6b656;exitX=0.9;exitY=0;exitDx=0;exitDy=0;" edge="1" source="hub" target="d3_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#b85450;exitX=1;exitY=0.3;exitDx=0;exitDy=0;" edge="1" source="hub" target="d4_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#9673a6;exitX=0.9;exitY=1;exitDx=0;exitDy=0;" edge="1" source="hub" target="d5_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke6" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#d79b00;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" source="hub" target="d6_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke7" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#6666cc;exitX=0.1;exitY=1;exitDx=0;exitDy=0;" edge="1" source="hub" target="d7_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="spoke8" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=2;strokeColor=#c62828;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="hub" target="d8_box" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       PAGE 3 — Scoring & Weighting Framework
+       ═══════════════════════════════════════════════════════════════════ -->
+  <diagram name="Scoring Framework" id="page-scoring">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ── PAGE TITLE ── -->
+        <mxCell id="p3_title" value="Finance LLM Benchmark — Scoring &amp; Weighting Framework"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;
+                 fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="100" y="15" width="1200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             SECTION A — Score Normalization
+             ══════════════════════════════════ -->
+        <mxCell id="norm_title" value="A.  Score Normalization Rules"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 fontSize=14;fontStyle=1;fontColor=#003087;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="400" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="norm_box1" value="&lt;b&gt;Higher-is-Better Metrics&lt;/b&gt; (Accuracy, F1, ROUGE, Pass@k)&lt;br/&gt;&lt;br/&gt;Normalized Score = 100 × (raw − min_baseline) / (max_possible − min_baseline)&lt;br/&gt;&lt;br/&gt;• min_baseline = random baseline OR worst observed in cohort&lt;br/&gt;• max_possible = 1.0 (accuracy) OR human benchmark level"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;
+                 fontSize=11;verticalAlign=top;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="115" width="520" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="norm_box2" value="&lt;b&gt;Lower-is-Better Metrics&lt;/b&gt; (Hallucination Rate, Latency, ECE)&lt;br/&gt;&lt;br/&gt;Normalized Score = 100 × (1 − (raw − target_min) / (target_max − target_min))&lt;br/&gt;&lt;br/&gt;• target_min = best achievable value (e.g., 0ms latency, 0% HR)&lt;br/&gt;• target_max = worst acceptable threshold (e.g., 10s latency)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;
+                 fontSize=11;verticalAlign=top;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="580" y="115" width="520" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="composite_box" value="&lt;b&gt;Composite Score Formula&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Composite(model, use_case) = Σ  [ Weight_i(use_case) × NormalizedScore_i(model) ]&lt;br/&gt;&lt;br/&gt;All normalized scores are in [0, 100].  Weights sum to 100% within each use case."
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontSize=11;verticalAlign=top;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="255" width="1060" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════
+             SECTION B — Dimension Weight Matrix
+             ══════════════════════════════════ -->
+        <mxCell id="wtmatrix_title" value="B.  Dimension Weight Matrix by Use Case  (values in %)"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 fontSize=14;fontStyle=1;fontColor=#003087;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="350" width="700" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- HEADER ROW -->
+        <mxCell id="wh0"  value="Dimension"          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"   y="385" width="175" height="38" as="geometry"/></mxCell>
+        <mxCell id="wh1"  value="Doc Intelligence"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="215"  y="385" width="130" height="38" as="geometry"/></mxCell>
+        <mxCell id="wh2"  value="Sentiment &amp; Trading" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="345"  y="385" width="130" height="38" as="geometry"/></mxCell>
+        <mxCell id="wh3"  value="Risk &amp; Compliance"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="475"  y="385" width="130" height="38" as="geometry"/></mxCell>
+        <mxCell id="wh4"  value="Customer Advisory"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="605"  y="385" width="130" height="38" as="geometry"/></mxCell>
+        <mxCell id="wh5"  value="Quant Reasoning"    style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="735"  y="385" width="130" height="38" as="geometry"/></mxCell>
+        <mxCell id="wh6"  value="Code Generation"    style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="865"  y="385" width="130" height="38" as="geometry"/></mxCell>
+
+        <!-- ROW D1 -->
+        <mxCell id="rl_d1" value="D1 Financial Knowledge"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="423" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d1_1" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="423" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d1_2" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="423" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d1_3" value="25% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffc7c7;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="475" y="423" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d1_4" value="20%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="423" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d1_5" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="423" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d1_6" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="423" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D2 -->
+        <mxCell id="rl_d2" value="D2 Numerical Reasoning"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="458" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d2_1" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="458" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d2_2" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="458" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d2_3" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="475" y="458" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d2_4" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="458" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d2_5" value="30% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="735" y="458" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d2_6" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="458" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D3 -->
+        <mxCell id="rl_d3" value="D3 Document Understanding" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="493" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d3_1" value="30% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff0a0;strokeColor=#ba9e00;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="215" y="493" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d3_2" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="493" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d3_3" value="20%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="475" y="493" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d3_4" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="493" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d3_5" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="493" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d3_6" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="493" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D4 -->
+        <mxCell id="rl_d4" value="D4 Instruction Following" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="528" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d4_1" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="528" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d4_2" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="528" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d4_3" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="475" y="528" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d4_4" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="528" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d4_5" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="528" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d4_6" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="528" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D5 -->
+        <mxCell id="rl_d5" value="D5 Hallucination &amp; Safety" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="563" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d5_1" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="563" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d5_2" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="563" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d5_3" value="25% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffc7c7;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="475" y="563" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d5_4" value="20% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffc7c7;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="605" y="563" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d5_5" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="563" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d5_6" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="563" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D6 -->
+        <mxCell id="rl_d6" value="D6 Latency &amp; Throughput" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="598" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d6_1" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="598" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d6_2" value="20% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0a0;strokeColor=#d79b00;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="345" y="598" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d6_3" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="475" y="598" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d6_4" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="598" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d6_5" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="598" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d6_6" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="598" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D7 -->
+        <mxCell id="rl_d7" value="D7 Context Handling"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f0ff;strokeColor=#6666cc;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="633" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d7_1" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="633" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d7_2" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="633" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d7_3" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="475" y="633" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d7_4" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="633" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d7_5" value="10%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="633" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d7_6" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="865" y="633" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ROW D8 -->
+        <mxCell id="rl_d8" value="D8 Code Generation"    style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c62828;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="668" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d8_1" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="215" y="668" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d8_2" value="15%"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="668" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d8_3" value="0%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e8e8e8;strokeColor=#9bbbdd;fontSize=11;fontColor=#999;" vertex="1" parent="1"><mxGeometry x="475" y="668" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d8_4" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="605" y="668" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d8_5" value="5%"   style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#9bbbdd;fontSize=11;" vertex="1" parent="1"><mxGeometry x="735" y="668" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_d8_6" value="40% ★" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="865" y="668" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- TOTAL ROW -->
+        <mxCell id="rl_tot" value="TOTAL"  style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40"  y="703" width="175" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_tot_1" value="100%" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="215" y="703" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_tot_2" value="100%" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="345" y="703" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_tot_3" value="100%" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="475" y="703" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_tot_4" value="100%" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="605" y="703" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_tot_5" value="100%" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="735" y="703" width="130" height="35" as="geometry"/></mxCell>
+        <mxCell id="rv_tot_6" value="100%" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#0d47a1;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="865" y="703" width="130" height="35" as="geometry"/></mxCell>
+
+        <!-- ══════════════════════════════════
+             SECTION C — Grade Thresholds
+             ══════════════════════════════════ -->
+        <mxCell id="grade_title" value="C.  Grade Thresholds &amp; Tie-Breaking Rules"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 fontSize=14;fontStyle=1;fontColor=#003087;"
+          vertex="1" parent="1">
+          <mxGeometry x="1100" y="350" width="450" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="g_ap" value="A+   85–100   Production-ready; best-in-class"     style="rounded=1;whiteSpace=wrap;html=1;fillColor=#006400;strokeColor=#004d00;fontColor=#ffffff;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="1100" y="390" width="390" height="38" as="geometry"/></mxCell>
+        <mxCell id="g_a"  value="A     75–84     Production-ready; minor fine-tuning"  style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2e7d32;strokeColor=#1b5e20;fontColor=#ffffff;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="1100" y="434" width="390" height="38" as="geometry"/></mxCell>
+        <mxCell id="g_bp" value="B+   65–74     Suitable after targeted fine-tuning"  style="rounded=1;whiteSpace=wrap;html=1;fillColor=#558b2f;strokeColor=#33691e;fontColor=#ffffff;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="1100" y="478" width="390" height="38" as="geometry"/></mxCell>
+        <mxCell id="g_b"  value="B     55–64     Limited scope; evaluate trade-offs"   style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9a825;strokeColor=#f57f17;fontColor=#000000;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="1100" y="522" width="390" height="38" as="geometry"/></mxCell>
+        <mxCell id="g_c"  value="C     40–54     Substantial fine-tuning required"     style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e65100;strokeColor=#bf360c;fontColor=#ffffff;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="1100" y="566" width="390" height="38" as="geometry"/></mxCell>
+        <mxCell id="g_d"  value="D      &lt; 40      Not recommended for production"       style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b71c1c;strokeColor=#7f0000;fontColor=#ffffff;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1"><mxGeometry x="1100" y="610" width="390" height="38" as="geometry"/></mxCell>
+
+        <mxCell id="tiebreak_box" value="&lt;b&gt;Tie-Breaking Rules&lt;/b&gt; (within ±2 composite points):&lt;br/&gt;&lt;br/&gt;① Safety First — Higher D5 (Hallucination &amp; Safety) wins&lt;br/&gt;② Latency Second — Lower P95 completion latency wins&lt;br/&gt;③ Cost Third — Lower estimated cost / 1M tokens wins&lt;br/&gt;④ Model Size — Smaller model wins (lower deployment overhead)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f9a825;
+                 fontSize=11;verticalAlign=top;align=left;spacingLeft=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="1100" y="665" width="390" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- ── LEGEND NOTE ── -->
+        <mxCell id="legend" value="★  = Primary differentiator for that use case  |  Grey cell (0%) = dimension not applicable  |  All weights sum to 100% per use case"
+          style="text;html=1;strokeColor=#d6b656;fillColor=#fff8dc;align=center;fontSize=10;rounded=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="755" width="1060" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+</mxfile>
