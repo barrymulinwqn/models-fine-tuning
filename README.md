@@ -5,17 +5,17 @@ open source models Fine tuning for Finance usage
 
 |  | Mixtral 8×7B | Phi-4 | Llama 3.1 8B | DeepSeek-R1-32B | Qwen2.5-72B |
 |---|---|---|---|---| --- |
-| **Context** | 32K | 16K | | | |
-| **VRAM (QLoRA)** | ~40–48 GB (A100 needed) | ~14–18 GB (single RTX 3090) | | | |
-| **Best for** | Long documents, multilingual, high throughput | Reasoning, structured Q&A, tight budgets | | | |
-| **Recommended company size** | Mid–Large | Small–Mid | | | |
-| **License** |  Apache 2.0 | MIT | | | |
-| **Org** | Mistral AI | Microsoft | | | |
-| **Cost** |  | Mid-Sized Finance Company (50–500 employees, $10K–$50K budget) | Small Finance Company (< 50 employees, < $5K budget) | | |
+| **Context** | 32K | 16K | 128K | 128K | 128K |
+| **VRAM (QLoRA)** | ~40–48 GB (A100 needed) | ~14–18 GB (single RTX 3090) | ~10–14 GB (single RTX 3090/4090) | ~24–32 GB (A100 or dual RTX 4090) | ~48–80 GB (multi-GPU, A100/H100 required) |
+| **Best for** | Long documents, multilingual, high throughput | Reasoning, structured Q&A, tight budgets | Lightweight deployment, instruction following, low-cost inference | Deep chain-of-thought reasoning, complex financial analysis, multi-step tasks | High-accuracy enterprise tasks, multilingual finance, regulatory compliance |
+| **Recommended company size** | Mid–Large | Small–Mid | Small | Mid–Large | Large–Enterprise |
+| **License** | Apache 2.0 | MIT | Meta Llama 3.1 License (commercial use allowed) | MIT | Apache 2.0 |
+| **Org** | Mistral AI | Microsoft | Meta | DeepSeek AI | Alibaba Cloud |
+| **Cost** | Mid–Large Finance Company (200–500 employees, $20K–$50K budget) | Mid-Sized Finance Company (50–500 employees, $10K–$50K budget) | Small Finance Company (< 50 employees, < $5K budget) | Large Finance Company (500–2000 employees, $50K–$150K budget) | Enterprise Finance (2000+ employees, $150K+ budget) |
 | **Finance Fine-Tune Ease** | Medium | Easy | Easy | Medium | Medium |
 | **Long_Doc** | ★★★★☆ | ★★★☆☆ | ★★★☆☆ | ★★★★☆ | ★★★★☆ |
 | **reasoning** | ★★★☆☆ | ★★★★☆ | ★★★☆☆ | ★★★★★ | ★★★★★ |
-|  |  |  |  |  |  |
+| **Fine tuning technique** | QLoRA (4-bit) + LoRA (r=16, attention layers) | QLoRA / LoRA + SFT(Supervised Fine-Tuning) (full fine-tune feasible on 2×A100) | QLoRA / Full SFT (Unsloth-accelerated; full FT on single A100 80GB) | QLoRA (4-bit) + DPO(Direct Preference Optimization) (preserve CoT reasoning chain) | QLoRA + DeepSpeed ZeRO-3 / FSDP (multi-GPU required) |
 
 
 # Mixtral 8×7B
